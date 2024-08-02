@@ -6,7 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Courier New', Courier, monospace;
-    background: linear-gradient(to left bottom, rgb(123, 76, 0), rgb(255, 255, 255));
+    background: linear-gradient( rgb(255, 193, 93), rgb(255, 255, 255));
     color: rgb(0, 0, 0); /* Ensure text is dark */
 }
 
