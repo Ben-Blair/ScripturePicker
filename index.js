@@ -1,23 +1,23 @@
 const btnEl = document.getElementById("btn");
 const quoteEl = document.getElementById("verse");
 const verseEl = document.getElementById("location");
-const apiURL = "https://labs.bible.org/api/?passage=random&type=json";
+const randomApiURL = "https://labs.bible.org/api/?passage=random&type=json";
 
 const attributes = [
-    "Love",
-    "Joy",
-    "Peace",
-    "Patience",
-    "Kindness",
-    "Goodness",
-    "Faithfulness",
-    "Gentleness",
-    "Self-Control",
-    "Depression",
-    "Heartbreak",
-    "Suicide",
-    "Loss",
-    "Betrayal"
+    "love",
+    "joy",
+    "peace",
+    "patience",
+    "kindness",
+    "goodness",
+    "faithfulness",
+    "gentleness",
+    "self-control",
+    "depression",
+    "heartbreak",
+    "suicide",
+    "loss",
+    "betrayal"
 ];
 
 function createCheckboxes() {
@@ -25,13 +25,13 @@ function createCheckboxes() {
     attributes.forEach(attribute => {
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-        checkbox.id = attribute.toLowerCase();
-        checkbox.name = attribute.toLowerCase();
+        checkbox.id = attribute;
+        checkbox.name = attribute;
         checkbox.value = attribute;
         
         const label = document.createElement("label");
-        label.htmlFor = attribute.toLowerCase();
-        label.textContent = ` ${attribute}`;
+        label.htmlFor = attribute;
+        label.textContent = ` ${attribute.charAt(0).toUpperCase() + attribute.slice(1)}`;
         
         const div = document.createElement("div");
         div.className = 'checkbox-item';
@@ -43,38 +43,90 @@ function createCheckboxes() {
     });
 }
 
-async function getVerse() {
+function getSelectedThemes() {
+    const selectedThemes = [];
+    attributes.forEach(attribute => {
+        const checkbox = document.getElementById(attribute);
+        if (checkbox.checked) {
+            selectedThemes.push(attribute);
+        }
+    });
+    return selectedThemes;
+}
+
+async function fetchVerseFromTheme(theme) {
     try {
-        btnEl.innerText = "Finding Verse";
-        btnEl.disabled = true;
-        quoteEl.innerHTML = null;
-        verseEl.innerText = null;
-        const response = await fetch(apiURL);
-        const data = await response.json();
-
-        // Log the entire response to understand its structure
-        console.log(data);
-        const verseContent = data[0].text;
-        const bookname = data[0].bookname;
-        const chapter = data[0].chapter;
-        const verse = data[0].verse;
-
-        // Display the verse content and location
-        quoteEl.innerHTML = verseContent;
-        document.getElementById("location").innerText = ` ${bookname} ${chapter}:${verse}`;
-        btnEl.innerText = "Find Verse";
-        btnEl.disabled = false;
+        const response = await fetch(`attributes/${theme}.txt`);
+        const text = await response.text();
+        const verses = text.split('\n').filter(verse => verse.trim() !== '');
+        const randomVerse = verses[Math.floor(Math.random() * verses.length)].trim();
+        return randomVerse;
     } catch (error) {
-        // Handle errors
-        console.error("Error fetching verse:", error);
-        quoteEl.innerText = "Error";
-        document.getElementById("location").innerText = "";
-        btnEl.innerText = "Find Verse";
-        btnEl.disabled = false;
+        console.error(`Error fetching verses for theme ${theme}:`, error);
+        return null;
     }
 }
 
+async function getVerse() {
+    btnEl.innerText = "Finding Verse";
+    btnEl.disabled = true;
+    quoteEl.innerHTML = null;
+    verseEl.innerText = null;
+
+    const selectedThemes = getSelectedThemes();
+    let apiURL = randomApiURL;
+
+    if (selectedThemes.length > 0) {
+        const randomTheme = selectedThemes[Math.floor(Math.random() * selectedThemes.length)];
+        const verseReference = await fetchVerseFromTheme(randomTheme);
+        if (verseReference) {
+            apiURL = `https://labs.bible.org/api/?passage=${encodeURIComponent(verseReference)}&type=json`;
+        }
+    }
+
+    try {
+        const response = await fetch(apiURL);
+        const data = await response.json();
+
+        // Concatenate all verses and their locations
+        let verseContent = '';
+        let locations = [];
+        let bookName = '';
+        let chapter = '';
+        let verseStart = '';
+        let verseEnd = '';
+
+        data.forEach((verseData, index) => {
+            verseContent += `${verseData.text} `;
+            if (index === 0) {
+                bookName = verseData.bookname;
+                chapter = verseData.chapter;
+                verseStart = verseData.verse;
+            }
+            if (index === data.length - 1) {
+                verseEnd = verseData.verse;
+            }
+            locations.push(`${verseData.bookname} ${verseData.chapter}:${verseData.verse}`);
+        });
+
+        let verseLocation = '';
+        if (verseStart === verseEnd) {
+            verseLocation = `${bookName} ${chapter}:${verseStart}`;
+        } else {
+            verseLocation = `${bookName} ${chapter}:${verseStart}-${verseEnd}`;
+        }
+
+        quoteEl.innerHTML = verseContent.trim();
+        verseEl.innerText = verseLocation;
+    } catch (error) {
+        console.error("Error fetching verse from API:", error);
+        quoteEl.innerText = "Error fetching verse.";
+    }
+
+    btnEl.innerText = "Find Verse";
+    btnEl.disabled = false;
+}
+
 createCheckboxes();
-getVerse();
 
 btnEl.addEventListener("click", getVerse);
