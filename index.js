@@ -15,7 +15,7 @@ const attributes = [
     "self-control",
     "depression",
     "heartbreak",
-    "suicide",
+    "hope",
     "loss",
     "betrayal"
 ];
@@ -123,10 +123,23 @@ async function getVerse() {
         quoteEl.innerText = "Error fetching verse.";
     }
 
-    btnEl.innerText = "Find Verse";
+    btnEl.innerText = "Randomize";
     btnEl.disabled = false;
+}
+
+function uncheckAll() {
+    attributes.forEach(attribute => {
+        const checkbox = document.getElementById(attribute);
+        if (checkbox.checked) {
+            checkbox.checked = false;
+        }
+    });
 }
 
 createCheckboxes();
 btnEl.addEventListener("click", getVerse);
+
+const uncheckBtn = document.getElementById("uncheck-btn");
+uncheckBtn.addEventListener("click", uncheckAll);
+
 getVerse();
