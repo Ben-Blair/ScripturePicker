@@ -6,8 +6,8 @@ body {
     justify-content: center;
     align-items: center;
     font-family: 'Courier New', Courier, monospace;
-    background: linear-gradient( rgb(255, 193, 93), rgb(255, 255, 255));
-    color: rgb(0, 0, 0); /* Ensure text is dark */
+    background: linear-gradient( rgb(255, 193, 93), rgb(255, 239, 212));
+    color: rgb(255, 255, 255); /* Ensure text is white */
 }
 
 .container {
@@ -23,17 +23,21 @@ body {
 .heading {
     font-size: 35px;
     font-weight: 700;
+    text-shadow: 1px 1px 1px black; /* Add shadow to checkbox labels */
 }
 
 .verse {
     font-size: 30px;
     font-weight: 600;
+    text-shadow: 1px 1px 1px black; /* Add shadow to verse */
 }
 
 .location {
-    font-size: 25px;
+    font-size: 27px;
     margin: 10px;
+    font-weight: bold; /* Make the text bold */
     font-style: italic;
+    text-shadow: .8px .8px .8px black; /* Add shadow to checkbox labels */
 }
 
 .btn {
@@ -64,16 +68,23 @@ body {
 
 .filter-heading {
     grid-column: span 2; /* Make the heading span both columns */
-    font-size: 25px; /* Increase the font size */
+    font-size: 30px; /* Increase the font size */
     font-weight: 400; /* Make the text not bold */
     text-align: center;
     margin-top: 5px; /* Reduce the top margin */
+    text-shadow: 1px 1px 1px black; /* Add shadow to filter heading */
 }
 
 .checkbox-item {
     display: flex;
     align-items: center;
     white-space: nowrap; /* Prevent wrapping within each checkbox-item */
+}
+
+.checkbox-item label {
+    font-size: 20px;
+    color: black;
+    
 }
 
 .small-btn {
