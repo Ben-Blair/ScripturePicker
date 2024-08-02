@@ -128,5 +128,5 @@ async function getVerse() {
 }
 
 createCheckboxes();
-
 btnEl.addEventListener("click", getVerse);
+getVerse();
