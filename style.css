@@ -63,7 +63,7 @@ body {
 
 .filter-heading {
     grid-column: span 2; /* Make the heading span both columns */
-    font-size: 20px;
+    font-size: 25px; /* Increase the font size */
     font-weight: 400; /* Make the text not bold */
     text-align: center;
     margin-top: 5px; /* Reduce the top margin */
