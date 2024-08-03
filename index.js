@@ -17,37 +17,31 @@ const attributes = [
     "heartbreak",
     "hope",
     "loss",
-    "betrayal"
+    "betrayal",
+    "comfort"
 ];
 
-function createCheckboxes() {
-    const container = document.getElementById("checkbox-container");
+function createToggleButtons() {
+    const container = document.getElementById("toggle-container");
     attributes.forEach(attribute => {
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.id = attribute;
-        checkbox.name = attribute;
-        checkbox.value = attribute;
+        const button = document.createElement("button");
+        button.id = attribute;
+        button.className = "toggle-button";
+        button.textContent = attribute.charAt(0).toUpperCase() + attribute.slice(1);
         
-        const label = document.createElement("label");
-        label.htmlFor = attribute;
-        label.textContent = ` ${attribute.charAt(0).toUpperCase() + attribute.slice(1)}`;
-        
-        const div = document.createElement("div");
-        div.className = 'checkbox-item';
-        
-        div.appendChild(checkbox);
-        div.appendChild(label);
-        
-        container.appendChild(div);
+        button.addEventListener("click", () => {
+            button.classList.toggle("active");
+        });
+
+        container.appendChild(button);
     });
 }
 
 function getSelectedThemes() {
     const selectedThemes = [];
     attributes.forEach(attribute => {
-        const checkbox = document.getElementById(attribute);
-        if (checkbox.checked) {
+        const button = document.getElementById(attribute);
+        if (button.classList.contains("active")) {
             selectedThemes.push(attribute);
         }
     });
@@ -88,7 +82,6 @@ async function getVerse() {
         const response = await fetch(apiURL);
         const data = await response.json();
 
-        // Concatenate all verses and their locations
         let verseContent = '';
         let locations = [];
         let bookName = '';
@@ -129,14 +122,23 @@ async function getVerse() {
 
 function uncheckAll() {
     attributes.forEach(attribute => {
-        const checkbox = document.getElementById(attribute);
-        if (checkbox.checked) {
-            checkbox.checked = false;
+        const button = document.getElementById(attribute);
+        if (button.classList.contains("active")) {
+            button.classList.remove("active");
+            button.classList.add("fade-out"); // Add class for fade-out effect
         }
     });
+    
+    // Remove the fade-out class after the transition duration
+    setTimeout(() => {
+        attributes.forEach(attribute => {
+            const button = document.getElementById(attribute);
+            button.classList.remove("fade-out");
+        });
+    }, 500); // 500ms matches the CSS transition duration
 }
 
-createCheckboxes();
+createToggleButtons();
 btnEl.addEventListener("click", getVerse);
 
 const uncheckBtn = document.getElementById("uncheck-btn");

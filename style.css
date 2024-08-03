@@ -1,12 +1,11 @@
 body {
     margin: 0;
     display: flex;
-    flex-direction: column;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
     min-height: 100vh;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Courier New', Courier, monospace;
-    background: linear-gradient( rgb(255, 193, 93), rgb(255, 239, 212));
+    font-family: 'Untitled', sans-serif;
+    background: linear-gradient(rgb(255, 193, 93), rgb(255, 239, 212));
     color: rgb(255, 255, 255); /* Ensure text is white */
 }
 
@@ -16,8 +15,9 @@ body {
     padding: 30px;
     border-radius: 15px;
     width: 90%;
-    margin: 10px;
+    max-width: 600px; /* Set a max-width for better alignment */
     text-align: center;
+    margin: 10px;
 }
 
 .heading {
@@ -58,16 +58,24 @@ body {
     transition: all 150ms ease-in-out;
 }
 
-#checkbox-container {
+.filter-container {
+    background-color: rgba(255, 255, 255, .1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .3);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#toggle-container {
     display: grid;
-    grid-template-columns: repeat(2, auto); /* Two columns */
+    grid-template-columns: repeat(3, auto); /* Two columns */
     gap: 10px; /* Spacing between items */
     justify-content: center;
     margin-bottom: 20px;
 }
 
 .filter-heading {
-    grid-column: span 2; /* Make the heading span both columns */
+    grid-column: span 3; /* Make the heading span both columns */
     font-size: 30px; /* Increase the font size */
     font-weight: 400; /* Make the text not bold */
     text-align: center;
@@ -75,40 +83,33 @@ body {
     text-shadow: 1px 1px 1px black; /* Add shadow to filter heading */
 }
 
-.checkbox-item {
-    display: flex;
-    align-items: center;
-    white-space: nowrap; /* Prevent wrapping within each checkbox-item */
-}
-
-.checkbox-item label {
-    font-size: 20px;
-    color: black;
-    
-}
-
-.small-btn {
-    font-size: 14px;
+.toggle-button {
+    font-size: 18px;
+    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    padding: 8px;
-    margin-top: 15px;
     background-color: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.6);
     text-transform: uppercase;
-    width: 150px;
-    justify-self: center; /* Center the button within the grid */
+    text-align: center;
+    color: rgb(50, 50, 50);
+    transition: outline-color 0.5s ease, box-shadow 0.5s ease; /* Add transition here */
 }
 
-.small-btn:hover {
+.toggle-button.active {
     background-color: rgba(255, 255, 255, 0.6);
+    outline: 3px solid rgb(44, 220, 255);
+    box-shadow: 0 0 10px rgb(44, 220, 255);
+}
+
+.toggle-button:hover {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
     transition: all 150ms ease-in-out;
 }
 
-/* New CSS rule for the reset button */
 #uncheck-btn {
     font-size: 14px;
     padding: 8px;
     width: 150px;
+    
 }

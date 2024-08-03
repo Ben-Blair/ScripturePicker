@@ -6,6 +6,19 @@
     <title>Bible Verse Generator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
+    <style>
+        @font-face {
+            font-family: 'Untitled';
+            src: url('path/to/untitled-font.woff2') format('woff2'), 
+                 url('path/to/untitled-font.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Untitled', sans-serif;
+        }
+    </style>
 </head>
 <body>
 
@@ -16,10 +29,11 @@
         </h2>
         <p class="location" id="location">Location</p>
         <button class="btn" id="btn">Find Verse</button>
-        <div class="container" id="checkbox-container">
+        <div class="filter-container">
             <h3 class="filter-heading">Filter Themes</h3>
+            <div class="toggle-container" id="toggle-container"></div>
+            <button class="btn" id="uncheck-btn">Reset</button>
         </div>
-        <button class="btn" id="uncheck-btn">Reset</button>
     </div>
 
     <script src="index.js"></script>
