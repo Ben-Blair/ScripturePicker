@@ -68,14 +68,14 @@ body {
 
 #toggle-container {
     display: grid;
-    grid-template-columns: repeat(3, auto); /* Two columns */
+    grid-template-columns: repeat(3, auto); /* Three columns */
     gap: 10px; /* Spacing between items */
     justify-content: center;
     margin-bottom: 20px;
 }
 
 .filter-heading {
-    grid-column: span 3; /* Make the heading span both columns */
+    grid-column: span 3; /* Make the heading span all columns */
     font-size: 30px; /* Increase the font size */
     font-weight: 400; /* Make the text not bold */
     text-align: center;
@@ -111,5 +111,11 @@ body {
     font-size: 14px;
     padding: 8px;
     width: 150px;
-    
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 600px) {
+    #toggle-container {
+        grid-template-columns: repeat(2, auto); /* Two columns */
+    }
 }
