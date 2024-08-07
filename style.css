@@ -1,121 +1,158 @@
-body {
+/* Reset some basic elements */
+body, h1, h2, p, button {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
     font-family: 'Untitled', sans-serif;
     background: linear-gradient(rgb(255, 193, 93), rgb(255, 239, 212));
-    color: rgb(255, 255, 255); /* Ensure text is white */
+    color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 20px;
 }
 
+/* Container styling */
 .container {
-    background-color: rgba(255, 255, 255, .1);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, .3);
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 600px; /* Set a max-width for better alignment */
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px;
     text-align: center;
-    margin: 10px;
 }
 
+/* Heading styling */
 .heading {
-    font-size: 35px;
+    font-size: 2.5rem;
     font-weight: 700;
-    text-shadow: 1px 1px 1px black; /* Add shadow to checkbox labels */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
 }
 
+/* Verse styling */
 .verse {
-    font-size: 30px;
+    font-size: 2rem;
     font-weight: 600;
-    text-shadow: 1px 1px 1px black; /* Add shadow to verse */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
 }
 
+/* Location styling */
 .location {
-    font-size: 27px;
-    margin: 10px;
-    font-weight: bold; /* Make the text bold */
+    font-size: 1.5rem;
+    margin: 10px 0;
+    font-weight: bold;
     font-style: italic;
-    text-shadow: .8px .8px .8px black; /* Add shadow to checkbox labels */
+    text-shadow: 0.5px 0.5px 2px rgba(0, 0, 0, 0.3);
 }
 
+/* Button styling */
 .btn {
-    font-size: 18px;
+    font-size: 1rem;
     border-radius: 5px;
     cursor: pointer;
-    padding: 10px;
+    padding: 10px 20px;
     margin-top: 15px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     text-transform: uppercase;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .btn:hover {
-    background-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
-    transition: all 150ms ease-in-out;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Filter container styling */
 .filter-container {
-    background-color: rgba(255, 255, 255, .1);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, .3);
-    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
     padding: 20px;
     margin-top: 20px;
 }
 
+/* Toggle container styling */
 #toggle-container {
     display: grid;
-    grid-template-columns: repeat(3, auto); /* Three columns */
-    gap: 10px; /* Spacing between items */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
     justify-content: center;
     margin-bottom: 20px;
 }
 
+/* Filter heading styling */
 .filter-heading {
-    grid-column: span 3; /* Make the heading span all columns */
-    font-size: 30px; /* Increase the font size */
-    font-weight: 400; /* Make the text not bold */
+    grid-column: span 3;
+    font-size: 2rem;
+    font-weight: 400;
     text-align: center;
-    margin-top: 5px; /* Reduce the top margin */
-    text-shadow: 1px 1px 1px black; /* Add shadow to filter heading */
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
+/* Toggle button styling */
 .toggle-button {
-    font-size: 18px;
+    font-size: 1rem;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     text-transform: uppercase;
     text-align: center;
     color: rgb(50, 50, 50);
-    transition: outline-color 0.5s ease, box-shadow 0.5s ease; /* Add transition here */
+    transition: background-color 0.3s, box-shadow 0.3s, outline-color 0.3s;
 }
 
 .toggle-button.active {
     background-color: rgba(255, 255, 255, 0.6);
-    outline: 3px solid rgb(44, 220, 255);
-    box-shadow: 0 0 10px rgb(44, 220, 255);
+    outline: 2.5px solid rgb(44, 220, 255);
+    box-shadow: 0 0 15px 5px rgb(44, 220, 255);
 }
 
-.toggle-button:hover {
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
-    transition: all 150ms ease-in-out;
+.toggle-button.active.hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    outline: 2px solid rgba(44, 220, 255, 0.5);
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.5);
 }
 
+.toggle-button:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Reset button styling */
 #uncheck-btn {
-    font-size: 14px;
+    font-size: 0.875rem;
     padding: 8px;
     width: 150px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-/* Media Query for smaller screens */
+#uncheck-btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Media query for smaller screens */
 @media (max-width: 600px) {
     #toggle-container {
-        grid-template-columns: repeat(2, auto); /* Two columns */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
