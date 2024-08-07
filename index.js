@@ -3,26 +3,23 @@ const quoteEl = document.getElementById("verse");
 const verseEl = document.getElementById("location");
 const randomApiURL = "https://labs.bible.org/api/?passage=random&type=json";
 
-const attributes = [
-    "love",
-    "joy",
-    "peace",
-    "patience",
-    "kindness",
-    "goodness",
-    "faithfulness",
-    "gentleness",
-    "self-control",
-    "depression",
-    "heartbreak",
-    "hope",
-    "loss",
-    "betrayal",
-    "comfort"
-];
+let attributes = [];
+
+// Function to fetch attributes from the text file
+async function fetchAttributes() {
+    try {
+        const response = await fetch('attributeList.txt');
+        const text = await response.text();
+        attributes = text.split('\n').map(attr => attr.trim()).filter(attr => attr !== '');
+        createToggleButtons();
+    } catch (error) {
+        console.error('Error fetching attributes:', error);
+    }
+}
 
 function createToggleButtons() {
     const container = document.getElementById("toggle-container");
+    container.innerHTML = ''; // Clear existing buttons if any
     attributes.forEach(attribute => {
         const button = document.createElement("button");
         button.id = attribute;
@@ -138,7 +135,7 @@ function uncheckAll() {
     }, 500); // 500ms matches the CSS transition duration
 }
 
-createToggleButtons();
+fetchAttributes();
 btnEl.addEventListener("click", getVerse);
 
 const uncheckBtn = document.getElementById("uncheck-btn");
