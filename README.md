@@ -9,3 +9,5 @@ Intended for Desktop and Mobile Phones
 ## Website
 
 https://scripturepicker.netlify.app/
+
+Created August 2024
