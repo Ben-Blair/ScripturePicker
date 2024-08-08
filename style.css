@@ -7,15 +7,24 @@ body, h1, h2, p, button {
 
 /* Body styling */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     font-family: 'Untitled', sans-serif;
-    background: linear-gradient(rgb(255, 193, 93), rgb(255, 239, 212));
-    color: rgb(255, 255, 255);
+    overflow: auto; /* Allow scrolling when content overflows */
     margin: 0;
     padding: 20px;
+    color: white; /* Set all text to white */
+    background: linear-gradient(to bottom, #0066cc 0%, #003366 100%);
+}
+
+/* Ocean background styling */
+#fish-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    background: linear-gradient(to bottom, #0066cc 0%, #003366 100%);
 }
 
 /* Container styling */
@@ -27,6 +36,8 @@ body {
     width: 100%;
     max-width: 600px;
     text-align: center;
+    margin: 20px auto;
+    z-index: 1;  /* Ensure this is above the fish container */
 }
 
 /* Heading styling */
@@ -67,6 +78,7 @@ body {
     width: 100%;
     max-width: 300px;
     transition: background-color 0.3s, box-shadow 0.3s;
+    color: white; /* Keep button text white */
 }
 
 .btn:hover {
@@ -113,7 +125,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.4);
     text-transform: uppercase;
     text-align: center;
-    color: rgb(50, 50, 50);
+    color: white; /* Keep toggle button text white */
     transition: background-color 0.3s, box-shadow 0.3s, outline-color 0.3s;
 }
 
@@ -143,6 +155,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.4);
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
+    color: white; /* Keep reset button text white */
 }
 
 #uncheck-btn:hover {
