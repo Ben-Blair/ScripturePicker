@@ -27,6 +27,40 @@ body {
     background: linear-gradient(to bottom, #0066cc 0%, #003366 100%);
 }
 
+/* Fish animation styling */
+.fish {
+    position: absolute;
+    width: 50px; /* Adjust the size as needed */
+    height: auto;
+    pointer-events: none;
+    animation: swim linear, fadeInOut 2s ease-in-out;
+    animation-iteration-count: 1; /* Add this line */
+}
+
+@keyframes swim {
+    0% {
+        transform: translateX(-100px);
+    }
+    100% {
+        transform: translateX(calc(100vw + 100px));
+    }
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 /* Container styling */
 .container {
     background-color: rgba(255, 255, 255, 0.1);
@@ -54,6 +88,7 @@ body {
     font-weight: 600;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     margin-bottom: 10px;
+    outline: 30px 30px 30px rgb(255, 0, 0);
 }
 
 /* Location styling */

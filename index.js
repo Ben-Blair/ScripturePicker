@@ -3,7 +3,51 @@ const quoteEl = document.getElementById("verse");
 const verseEl = document.getElementById("location");
 const randomApiURL = "https://labs.bible.org/api/?passage=random&type=json";
 let attributes = [];
+const fishContainer = document.getElementById("fish-container");
+const fishImage = 'fish.png'; // Ensure this path is correct
+const fishCount = 8; // Adjust the number of fish as needed
+const fishSpeedMultiplier = 10; // Speed multiplier to make the fish move 3 times slower
+const screenWidthThreshold = 768; // Threshold for smartphones
 
+// Function to create and animate initial fish in random positions
+function createInitialFish() {
+    if (window.innerWidth < screenWidthThreshold) return; // Do not create fish on smartphones
+
+    for (let i = 0; i < fishCount; i++) {
+        const fish = document.createElement("img");
+        fish.src = fishImage;
+        fish.className = "fish";
+        fish.style.top = `${Math.random() * 100}vh`;
+        fish.style.left = `${Math.random() * 100}vw`; // Start at random position along the x-axis
+        fish.style.animationDuration = `${(Math.random() * 10 + 5) * fishSpeedMultiplier}s`; // Random speed, multiplied duration for slower speed
+        fishContainer.appendChild(fish);
+
+        // Remove fish after animation ends
+        fish.addEventListener('animationend', () => {
+            fishContainer.removeChild(fish);
+        });
+    }
+}
+
+// Function to create and animate fish starting from the left side
+function spawnFishFromLeft() {
+    if (window.innerWidth < screenWidthThreshold) return; // Do not create fish on smartphones
+
+    const fish = document.createElement("img");
+    fish.src = fishImage;
+    fish.className = "fish";
+    fish.style.top = `${Math.random() * 100}vh`;
+    fish.style.left = `-50px`; // Start just off the left side of the screen
+    fish.style.animationDuration = `${(Math.random() * 10 + 5) * fishSpeedMultiplier}s`; // Random speed, multiplied duration for slower speed
+    fishContainer.appendChild(fish);
+
+    // Remove fish after animation ends
+    fish.addEventListener('animationend', () => {
+        fishContainer.removeChild(fish);
+    });
+}
+
+// Scripture Picker code
 async function fetchAttributes() {
     try {
         const response = await fetch('attributeList.txt');
@@ -109,3 +153,7 @@ fetchAttributes();
 btnEl.addEventListener("click", getVerse);
 document.getElementById("uncheck-btn").addEventListener("click", uncheckAll);
 getVerse();
+
+// Initialize fish animation
+createInitialFish();
+setInterval(spawnFishFromLeft, 5500); // Adjust interval to control how often new fish spawn
