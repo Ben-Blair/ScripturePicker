@@ -7,12 +7,15 @@ body, h1, h2, p, button {
 
 /* Body styling */
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensure body takes the full viewport height */
     font-family: 'Untitled', sans-serif;
-    overflow: auto; /* Allow scrolling when content overflows */
     margin: 0;
     padding: 20px;
     color: white; /* Set all text to white */
-    background: linear-gradient(to bottom, #0066cc 0%, #003366 100%);
+    background: linear-gradient(to bottom, #0076ec 0%, #003366 100%);
 }
 
 /* Ocean background styling */
@@ -24,17 +27,22 @@ body {
     height: 100%;
     overflow: hidden;
     z-index: -1;
-    background: linear-gradient(to bottom, #0066cc 0%, #003366 100%);
+    background: linear-gradient(to bottom, #0076ec 0%, #003366 100%);
 }
 
 /* Fish animation styling */
 .fish {
     position: absolute;
-    width: 50px; /* Adjust the size as needed */
+    width: 50px; /* Base size, overridden by JS */
     height: auto;
     pointer-events: none;
     animation: swim linear, fadeInOut 2s ease-in-out;
-    animation-iteration-count: 1; /* Add this line */
+    animation-iteration-count: 1;
+}
+
+/* Fish that appear farther away */
+.farther-away {
+    opacity: 0.7; /* Default opacity for farther away, but will be overridden by JS if needed */
 }
 
 @keyframes swim {
@@ -51,14 +59,28 @@ body {
         opacity: 0;
     }
     10% {
-        opacity: 1;
+        opacity: .5;
     }
     90% {
-        opacity: 1;
+        opacity: .5;
     }
     100% {
         opacity: 0;
     }
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
 }
 
 /* Container styling */
@@ -88,7 +110,6 @@ body {
     font-weight: 600;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     margin-bottom: 10px;
-    outline: 30px 30px 30px rgb(255, 0, 0);
 }
 
 /* Location styling */

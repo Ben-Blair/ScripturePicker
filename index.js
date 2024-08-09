@@ -17,14 +17,31 @@ function createInitialFish() {
         const fish = document.createElement("img");
         fish.src = fishImage;
         fish.className = "fish";
+
+        // Randomly decide if the fish is "farther away"
+        const isFartherAway = Math.random() > 0.5;
+        const randomOpacity = Math.random() * 0.5 + 0.5; // Random opacity between 0.5 and 1
+        const randomSize = isFartherAway ? Math.random() * 20 + 40 : Math.random() * 20 + 50; // Size between 40-60px or 50-70px
+
+        fish.style.opacity = randomOpacity;
+        fish.style.width = `${randomSize}px`;
+
         fish.style.top = `${Math.random() * 100}vh`;
         fish.style.left = `${Math.random() * 100}vw`; // Start at random position along the x-axis
         fish.style.animationDuration = `${(Math.random() * 10 + 5) * fishSpeedMultiplier}s`; // Random speed, multiplied duration for slower speed
+
+        // Add click event to remove fish when clicked
+        fish.addEventListener('click', () => {
+            fishContainer.removeChild(fish);
+        });
+
         fishContainer.appendChild(fish);
 
         // Remove fish after animation ends
         fish.addEventListener('animationend', () => {
-            fishContainer.removeChild(fish);
+            if (fish.parentElement) {
+                fishContainer.removeChild(fish);
+            }
         });
     }
 }
@@ -36,14 +53,31 @@ function spawnFishFromLeft() {
     const fish = document.createElement("img");
     fish.src = fishImage;
     fish.className = "fish";
+
+    // Randomly decide if the fish is "farther away"
+    const isFartherAway = Math.random() > 0.5;
+    const randomOpacity = Math.random() * 0.5 + 0.5; // Random opacity between 0.5 and 1
+    const randomSize = isFartherAway ? Math.random() * 20 + 40 : Math.random() * 20 + 50; // Size between 40-60px or 50-70px
+
+    fish.style.opacity = randomOpacity;
+    fish.style.width = `${randomSize}px`;
+
     fish.style.top = `${Math.random() * 100}vh`;
     fish.style.left = `-50px`; // Start just off the left side of the screen
     fish.style.animationDuration = `${(Math.random() * 10 + 5) * fishSpeedMultiplier}s`; // Random speed, multiplied duration for slower speed
+
+    // Add click event to remove fish when clicked
+    fish.addEventListener('click', () => {
+        fishContainer.removeChild(fish);
+    });
+
     fishContainer.appendChild(fish);
 
     // Remove fish after animation ends
     fish.addEventListener('animationend', () => {
-        fishContainer.removeChild(fish);
+        if (fish.parentElement) {
+            fishContainer.removeChild(fish);
+        }
     });
 }
 
@@ -135,9 +169,20 @@ function updateContent(data) {
     const verseContent = data.map(verseData => verseData.text).join(' ').trim();
     const verseLocation = data.length === 1
         ? `${data[0].bookname} ${data[0].chapter}:${data[0].verse}`
-        : `${data[0].bookname} ${data[0].chapter}:${data[0].verse}-${data[data.length - 1].verse}`;
+        : `${data[0].bookname} ${data[0].chapter}:${data[data.length - 1].verse}`;
+
     quoteEl.innerHTML = verseContent;
     verseEl.innerText = verseLocation;
+
+    // Apply fade-in effect
+    quoteEl.classList.add('fade-in');
+    verseEl.classList.add('fade-in');
+
+    // Remove the class after the animation is done to allow re-application
+    setTimeout(() => {
+        quoteEl.classList.remove('fade-in');
+        verseEl.classList.remove('fade-in');
+    }, 1000); // Match the duration of the fadeIn animation
 }
 
 function uncheckAll() {
