@@ -201,4 +201,4 @@ getVerse();
 
 // Initialize fish animation
 createInitialFish();
-setInterval(spawnFishFromLeft, 5500); // Adjust interval to control how often new fish spawn
+setInterval(spawnFishFromLeft, 6500); // Adjust interval to control how often new fish spawn
