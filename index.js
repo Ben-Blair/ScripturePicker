@@ -6,7 +6,7 @@ let attributes = [];
 const fishContainer = document.getElementById("fish-container");
 const fishImage = 'fish.png'; // Ensure this path is correct
 const fishCount = 8; // Adjust the number of fish as needed
-const fishSpeedMultiplier = 10; // Speed multiplier to make the fish move 3 times slower
+const fishSpeedMultiplier = 14; // Speed multiplier to make the fish move 3 times slower
 const screenWidthThreshold = 768; // Threshold for smartphones
 
 // Function to create and animate initial fish in random positions
@@ -201,4 +201,4 @@ getVerse();
 
 // Initialize fish animation
 createInitialFish();
-setInterval(spawnFishFromLeft, 6500); // Adjust interval to control how often new fish spawn
+setInterval(spawnFishFromLeft, 8000); // Adjust interval to control how often new fish spawn
