@@ -130,6 +130,10 @@ async function fetchVerseFromTheme(theme) {
 
 async function getVerse() {
     toggleButtonState(true);
+    
+    const containerEl = document.querySelector('.container');
+    containerEl.style.minHeight = `${containerEl.offsetHeight}px`; // Set minimum height to current height
+
     clearContent();
 
     const selectedThemes = getSelectedThemes();
@@ -153,6 +157,7 @@ async function getVerse() {
     }
 
     toggleButtonState(false);
+    containerEl.style.minHeight = ''; // Remove the minimum height restriction after updating content
 }
 
 function toggleButtonState(disabled) {

@@ -9,7 +9,7 @@ body, h1, h2, p, button {
 body {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align items at the top */
+    align-items: center; /* Center the container vertically */
     min-height: 100vh;
     font-family: 'Untitled', sans-serif;
     margin: 0;
@@ -84,17 +84,18 @@ body {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* Adjust the container to have margins */
+/* Adjust the container to have equal margins and prevent resizing during verse generation */
 .container {
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    padding: 35px;
     border-radius: 20px;
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     text-align: center;
-    margin: 40px auto; /* Add top and bottom margins */
+    margin: auto; /* Automatically center the container */
     z-index: 1;  /* Ensure this is above the fish container */
+    transition: min-height 0.3s ease; /* Smooth transition for min-height */
 }
 
 /* Heading styling */
@@ -111,6 +112,9 @@ body {
     font-weight: 600;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     margin-bottom: 10px;
+    max-height: 50vh; /* Limit the height to 50% of the viewport height */
+    overflow-y: auto; /* Allow scrolling if the content overflows */
+    word-wrap: break-word; /* Break long words to avoid overflow */
 }
 
 /* Location styling */
