@@ -5,17 +5,18 @@ body, h1, h2, p, button {
     box-sizing: border-box;
 }
 
-/* Body styling */
+/* Ensure the body can scroll */
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh; /* Ensure body takes the full viewport height */
+    align-items: flex-start; /* Align items at the top */
+    min-height: 100vh;
     font-family: 'Untitled', sans-serif;
     margin: 0;
     padding: 20px;
     color: white; /* Set all text to white */
     background: linear-gradient(to bottom, #0076ec 0%, #003366 100%);
+    overflow-y: auto; /* Allow vertical scrolling */
 }
 
 /* Ocean background styling */
@@ -59,10 +60,10 @@ body {
         opacity: 0;
     }
     10% {
-        opacity: .5;
+        opacity: 0.5;
     }
     90% {
-        opacity: .5;
+        opacity: 0.5;
     }
     100% {
         opacity: 0;
@@ -83,7 +84,7 @@ body {
     animation: fadeIn 1s ease-in-out;
 }
 
-/* Container styling */
+/* Adjust the container to have margins */
 .container {
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
@@ -92,7 +93,7 @@ body {
     width: 100%;
     max-width: 600px;
     text-align: center;
-    margin: 20px auto;
+    margin: 40px auto; /* Add top and bottom margins */
     z-index: 1;  /* Ensure this is above the fish container */
 }
 

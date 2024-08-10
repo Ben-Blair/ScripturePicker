@@ -169,7 +169,7 @@ function updateContent(data) {
     const verseContent = data.map(verseData => verseData.text).join(' ').trim();
     const verseLocation = data.length === 1
         ? `${data[0].bookname} ${data[0].chapter}:${data[0].verse}`
-        : `${data[0].bookname} ${data[0].chapter}:${data[data.length - 1].verse}`;
+        : `${data[0].bookname} ${data[data.length - 1].verse}`;
 
     quoteEl.innerHTML = verseContent;
     verseEl.innerText = verseLocation;
@@ -177,6 +177,9 @@ function updateContent(data) {
     // Apply fade-in effect
     quoteEl.classList.add('fade-in');
     verseEl.classList.add('fade-in');
+
+    // Scroll the container into view if it's not fully visible
+    document.querySelector('.container').scrollIntoView({ behavior: 'smooth', block: 'center' });
 
     // Remove the class after the animation is done to allow re-application
     setTimeout(() => {
