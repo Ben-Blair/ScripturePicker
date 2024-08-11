@@ -183,8 +183,8 @@ function updateContent(data) {
     quoteEl.classList.add('fade-in');
     verseEl.classList.add('fade-in');
 
-    // // Scroll the container into view if it's not fully visible
-    // document.querySelector('.container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Scroll the container into view if it's not fully visible
+    document.querySelector('.container').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     // Remove the class after the animation is done to allow re-application
     setTimeout(() => {
